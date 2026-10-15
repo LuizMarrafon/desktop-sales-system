@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rexora — Gestão de Vendas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div class="brand" aria-label="Rexora">
+        <div class="brand-mark"><span></span><span></span><span></span></div>
+        Rexora
+      </div>
+      <nav class="nav" aria-label="Navegação principal">
+        <button class="active" data-page="dashboard">Dashboard</button>
+        <button data-page="vendas">Vendas</button>
+        <button data-page="produtos">Produtos</button>
+        <button data-page="relatorios">Relatórios</button>
+        <button data-page="pedidos">Pedidos</button>
+      </nav>
+      <div class="profile"><div class="avatar">R</div><div><strong>Administrador</strong><small>Meu comércio</small></div></div>
+    </header>
+
+    <section class="welcome">
+      <h1 id="welcome-title">Bem-vindo de volta! 👋</h1>
+      <p id="welcome-subtitle">Acompanhe as vendas, o desempenho dos produtos e o faturamento do seu comércio.</p>
+    </section>
+
+    <section class="section active" id="page-dashboard">
+      <div class="stats">
+        <article class="stat"><div class="stat-top"><span>Vendas realizadas</span><span class="stat-icon">↗</span></div><div class="stat-value" id="stat-sales">248</div><div class="stat-foot"><span><span class="positive">▲ 12,8%</span> vs. mês passado</span><span class="details">Neste mês ↗</span></div></article>
+        <article class="stat"><div class="stat-top"><span>Produtos cadastrados</span><span class="stat-icon">▦</span></div><div class="stat-value" id="stat-products">1.284</div><div class="stat-foot"><span><span class="positive">▲ 8,2%</span> no catálogo</span><span class="details">Ver produtos ↗</span></div></article>
+        <article class="stat"><div class="stat-top"><span>Faturamento total</span><span class="stat-icon">＄</span></div><div class="stat-value" id="stat-revenue">R$ 68.837</div><div class="stat-foot"><span><span class="positive">▲ 2,4%</span> vs. mês passado</span><span class="details">Ver detalhes ↗</span></div></article>
+        <article class="stat"><div class="stat-top"><span>Estoque baixo</span><span class="stat-icon">♧</span></div><div class="stat-value" id="stat-low">12</div><div class="stat-foot"><span>Precisam de reposição</span><span class="details">Conferir estoque ↗</span></div></article>
+      </div>
+
+      <div class="content-grid">
+        <article class="card">
+          <div class="card-heading"><h2>Visão geral das vendas</h2><button class="more" aria-label="Mais opções">···</button></div>
+          <div class="profit-line"><div class="profit-value" id="chart-total">R$ 98.643,24</div><span class="pill">+8,4% ↗</span></div>
+          <div class="legend"><span><i class="dot" style="background:#e9edef"></i>Vendas anteriores</span><span><i class="dot" style="background:#ff8b35"></i>Vendas atuais</span></div>
+          <div class="chart">
+            <div class="y-labels"><span>100 mil</span><span>75 mil</span><span>50 mil</span><span>25 mil</span><span>0</span></div>
+            <div class="plot" id="sales-chart" aria-label="Gráfico ilustrativo de vendas por mês"></div>
+          </div>
+        </article>
+        <aside class="card">
+          <div class="card-heading"><h2>Produtos em destaque</h2><button class="more" aria-label="Mais opções">···</button></div>
+          <div class="product-list" id="top-products">
+            <div class="product"><div class="product-art">👟</div><div class="product-info"><strong>Tênis esportivo</strong><small>Calçados · 86 vendidos</small></div><span class="product-price">R$ 249</span></div>
+            <div class="product"><div class="product-art">⌚</div><div class="product-info"><strong>Relógio digital</strong><small>Acessórios · 64 vendidos</small></div><span class="product-price">R$ 189</span></div>
+            <div class="product"><div class="product-art">🎧</div><div class="product-info"><strong>Fone sem fio</strong><small>Eletrônicos · 52 vendidos</small></div><span class="product-price">R$ 159</span></div>
+            <div class="product"><div class="product-art">🎮</div><div class="product-info"><strong>Controle sem fio</strong><small>Eletrônicos · 38 vendidos</small></div><span class="product-price">R$ 299</span></div>
+          </div>
+        </aside>
+      </div>
+
+      <article class="card table-card">
+        <div class="card-heading"><h2>Vendas recentes</h2><div class="table-tools"><input class="search" id="dashboard-search" placeholder="Buscar venda..." aria-label="Buscar venda"><button class="action" data-go="vendas">Ver todas as vendas ↗</button></div></div>
+        <div class="table-wrap"><table><thead><tr><th>Nº da venda</th><th>Cliente</th><th>Data</th><th>Pagamento</th><th>Valor</th><th>Status</th></tr></thead><tbody id="recent-sales"></tbody></table></div>
+      </article>
+    </section>
+
+    <section class="section" id="page-vendas">
+      <article class="card">
+        <div class="card-heading"><h2>Vendas</h2><button class="action" id="new-sale-btn">+ Nova venda</button></div>
+        <p style="color:var(--muted);margin-top:0">Consulte as vendas registradas ou adicione uma venda demonstrativa.</p>
+        <div class="table-tools"><input class="search" id="sales-search" placeholder="Buscar por cliente ou venda..."></div>
+        <div class="table-wrap"><table><thead><tr><th>Nº da venda</th><th>Cliente</th><th>Data</th><th>Pagamento</th><th>Valor</th><th>Status</th></tr></thead><tbody id="all-sales"></tbody></table></div>
+      </article>
+      <article class="card table-card" id="sale-form-card" hidden>
+        <h2>Registrar venda</h2>
+        <form class="form-grid" id="sale-form">
+          <label class="field">Nome do cliente<input name="cliente" required placeholder="Ex.: Ana Souza"></label>
+          <label class="field">Valor total (R$)<input name="valor" type="number" min="0.01" step="0.01" required placeholder="0,00"></label>
+          <label class="field">Forma de pagamento<select name="pagamento"><option>Pix</option><option>Dinheiro</option><option>Cartão de débito</option><option>Cartão de crédito</option></select></label>
+          <label class="field">Status<select name="status"><option>Concluída</option><option>Pendente</option></select></label>
+          <div class="field full"><button class="action" type="submit">Salvar venda demonstrativa</button></div>
+        </form>
+        <p class="notice">Demonstração visual: os dados ficam apenas na memória enquanto esta janela estiver aberta. Ainda não há banco de dados conectado.</p>
+      </article>
+    </section>
+
+    <section class="section" id="page-produtos">
+      <article class="card">
+        <div class="card-heading"><h2>Produtos e estoque</h2><button class="action" id="new-product-btn">+ Novo produto</button></div>
+        <p style="color:var(--muted);margin-top:0">Acompanhe os produtos cadastrados e identifique itens que precisam de reposição.</p>
+        <div class="table-wrap"><table><thead><tr><th>Produto</th><th>Categoria</th><th>Preço</th><th>Quantidade</th><th>Situação</th></tr></thead><tbody id="products-table"></tbody></table></div>
+      </article>
+      <article class="card table-card" id="product-form-card" hidden>
+        <h2>Cadastrar produto</h2>
+        <form class="form-grid" id="product-form">
+          <label class="field">Nome do produto<input name="nome" required placeholder="Nome do produto"></label>
+          <label class="field">Categoria<input name="categoria" required placeholder="Ex.: Alimentos"></label>
+          <label class="field">Preço (R$)<input name="preco" type="number" min="0.01" step="0.01" required placeholder="0,00"></label>
+          <label class="field">Quantidade em estoque<input name="quantidade" type="number" min="0" step="1" required placeholder="0"></label>
+          <div class="field full"><button class="action" type="submit">Adicionar produto</button></div>
+        </form>
+        <p class="notice">Demonstração visual: os dados ficam apenas na memória enquanto esta janela estiver aberta. Ainda não há banco de dados conectado.</p>
+      </article>
+    </section>
+
+    <section class="section" id="page-relatorios">
+      <article class="card"><div class="card-heading"><h2>Relatórios</h2></div><p>Veja um resumo dos indicadores demonstrativos do seu comércio.</p><div class="stats" style="margin-top:18px"><div class="stat"><div class="stat-top">Ticket médio</div><div class="stat-value" id="average-ticket">R$ 277,57</div><div class="stat-foot">Valor médio por venda</div></div><div class="stat"><div class="stat-top">Vendas concluídas</div><div class="stat-value" id="completed-count">236</div><div class="stat-foot">Pedidos finalizados</div></div></div><p class="notice">Os números desta primeira versão são fictícios para demonstrar o layout. Relatórios reais serão ligados ao banco de dados numa próxima etapa.</p></article>
+    </section>
+
+    <section class="section" id="page-pedidos">
+      <article class="card"><div class="card-heading"><h2>Pedidos</h2></div><p style="color:var(--muted)">Acompanhe o andamento dos pedidos registrados.</p><div class="table-wrap"><table><thead><tr><th>Pedido</th><th>Cliente</th><th>Data</th><th>Valor</th><th>Status</th></tr></thead><tbody id="orders-table"></tbody></table></div></article>
+    </section>
+  </main>
+
+  <script>
+    const money = value => value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    const dateToday = () => new Date().toLocaleDateString('pt-BR');
+    let sales = [
+      { id: '#VD-1048', cliente: 'Mariana Oliveira', data: dateToday(), pagamento: 'Pix', valor: 459.90, status: 'Concluída' },
+      { id: '#VD-1047', cliente: 'Carlos Mendes', data: dateToday(), pagamento: 'Cartão de crédito', valor: 219.00, status: 'Concluída' },
+      { id: '#VD-1046', cliente: 'Juliana Costa', data: dateToday(), pagamento: 'Dinheiro', valor: 89.90, status: 'Pendente' },
+      { id: '#VD-1045', cliente: 'Rafael Santos', data: dateToday(), pagamento: 'Pix', valor: 780.00, status: 'Concluída' },
+      { id: '#VD-1044', cliente: 'Beatriz Lima', data: dateToday(), pagamento: 'Cartão de débito', valor: 159.90, status: 'Concluída' }
+    ];
+    let products = [
+      { nome: 'Tênis esportivo', categoria: 'Calçados', preco: 249.00, quantidade: 18, emoji: '👟' },
+      { nome: 'Relógio digital', categoria: 'Acessórios', preco: 189.00, quantidade: 7, emoji: '⌚' },
+      { nome: 'Fone sem fio', categoria: 'Eletrônicos', preco: 159.00, quantidade: 4, emoji: '🎧' },
+      { nome: 'Controle sem fio', categoria: 'Eletrônicos', preco: 299.00, quantidade: 12, emoji: '🎮' },
+      { nome: 'Mochila urbana', categoria: 'Acessórios', preco: 139.90, quantidade: 3, emoji: '🎒' }
+    ];
+    const months = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+    const values = [29, 82, 61, 43, 59, 96, 34, 72, 45, 70, 32, 47];
+    const chart = document.getElementById('sales-chart');
+    values.forEach((value, i) => {
+      const wrap = document.createElement('div'); wrap.className = 'bar-wrap';
+      const bar = document.createElement('div'); bar.className = 'bar' + (i === 4 ? ' highlight' : '');
+      bar.style.height = value + '%'; bar.title = `${months[i]}: ${money(value * 1000)}`;
+      const label = document.createElement('span'); label.className = 'bar-month'; label.textContent = months[i];
+      wrap.append(bar, label); chart.append(wrap);
+    });
+    function statusBadge(status) {
+      return `<span class="status ${status === 'Pendente' ? 'pending' : ''}">${status}</span>`;
+    }
+    function renderSales(target, list) {
+      target.innerHTML = list.length ? list.map(s => `<tr><td><strong>${s.id}</strong></td><td>${escapeHtml(s.cliente)}</td><td>${s.data}</td><td>${escapeHtml(s.pagamento)}</td><td>${money(s.valor)}</td><td>${statusBadge(s.status)}</td></tr>`).join('') : '<tr><td colspan="6" class="empty">Nenhuma venda encontrada.</td></tr>';
+    }
+    function escapeHtml(text) {
+      return String(text).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+    }
+    function renderProducts() {
+      document.getElementById('products-table').innerHTML = products.map(p => `<tr><td><strong>${escapeHtml(p.nome)}</strong></td><td>${escapeHtml(p.categoria)}</td><td>${money(p.preco)}</td><td>${p.quantidade}</td><td>${p.quantidade <= 5 ? '<span class="status pending">Estoque baixo</span>' : '<span class="status">Disponível</span>'}</td></tr>`).join('');
+      document.getElementById('stat-products').textContent = products.length.toLocaleString('pt-BR');
+      document.getElementById('stat-low').textContent = products.filter(p => p.quantidade <= 5).length;
+    }
+    function renderTopProducts() {
+      document.getElementById('top-products').innerHTML = products.slice(0,4).map(p => `<div class="product"><div class="product-art">${p.emoji || '📦'}</div><div class="product-info"><strong>${escapeHtml(p.nome)}</strong><small>${escapeHtml(p.categoria)} · ${p.quantidade} em estoque</small></div><span class="product-price">${money(p.preco)}</span></div>`).join('');
+    }
+    function renderAll() {
+      renderSales(document.getElementById('recent-sales'), sales.slice(0,5));
+      renderSales(document.getElementById('all-sales'), sales);
+      renderProducts(); renderTopProducts();
+      document.getElementById('orders-table').innerHTML = sales.map(s => `<tr><td><strong>${s.id}</strong></td><td>${escapeHtml(s.cliente)}</td><td>${s.data}</td><td>${money(s.valor)}</td><td>${statusBadge(s.status)}</td></tr>`).join('');
+      const total = sales.reduce((sum, s) => sum + s.valor, 0);
+      document.getElementById('average-ticket').textContent = money(sales.length ? total / sales.length : 0);
+      document.getElementById('completed-count').textContent = sales.filter(s => s.status === 'Concluída').length;
+      document.getElementById('stat-sales').textContent = (248 + sales.length - 5).toLocaleString('pt-BR');
+      document.getElementById('stat-revenue').textContent = money(68837 + total - 1708.7);
+    }
+    const pageCopy = {
+      dashboard: ['Bem-vindo de volta! 👋', 'Acompanhe as vendas, o desempenho dos produtos e o faturamento do seu comércio.'],
+      vendas: ['Vendas 💳', 'Consulte o histórico e registre novas vendas do seu comércio.'],
+      produtos: ['Produtos e estoque 📦', 'Gerencie o catálogo, os preços e a disponibilidade dos produtos.'],
+      relatorios: ['Relatórios 📊', 'Acompanhe indicadores para entender os resultados do seu comércio.'],
+      pedidos: ['Pedidos 🧾', 'Confira os pedidos e seus respectivos status.']
+    };
+    document.querySelectorAll('[data-page]').forEach(button => button.addEventListener('click', () => {
+      const page = button.dataset.page;
+      document.querySelectorAll('[data-page]').forEach(b => b.classList.toggle('active', b === button));
+      document.querySelectorAll('.section').forEach(section => section.classList.toggle('active', section.id === `page-${page}`));
+      document.getElementById('welcome-title').textContent = pageCopy[page][0];
+      document.getElementById('welcome-subtitle').textContent = pageCopy[page][1];
+    }));
+    document.querySelectorAll('[data-go]').forEach(button => button.addEventListener('click', () => document.querySelector(`[data-page="${button.dataset.go}"]`).click()));
+    document.getElementById('dashboard-search').addEventListener('input', event => renderSales(document.getElementById('recent-sales'), sales.filter(s => `${s.id} ${s.cliente}`.toLowerCase().includes(event.target.value.toLowerCase())).slice(0,5)));
+    document.getElementById('sales-search').addEventListener('input', event => renderSales(document.getElementById('all-sales'), sales.filter(s => `${s.id} ${s.cliente} ${s.pagamento}`.toLowerCase().includes(event.target.value.toLowerCase())));
+    document.getElementById('new-sale-btn').addEventListener('click', () => {
+      const card = document.getElementById('sale-form-card'); card.hidden = !card.hidden;
+      if (!card.hidden) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    document.getElementById('sale-form').addEventListener('submit', event => {
+      event.preventDefault(); const form = new FormData(event.currentTarget);
+      sales.unshift({ id: `#VD-${1049 + sales.length - 5}`, cliente: form.get('cliente'), data: dateToday(), pagamento: form.get('pagamento'), valor: Number(form.get('valor')), status: form.get('status') });
+      event.currentTarget.reset(); document.getElementById('sale-form-card').hidden = true; renderAll();
+    });
+    document.getElementById('new-product-btn').addEventListener('click', () => {
+      const card = document.getElementById('product-form-card'); card.hidden = !card.hidden;
+      if (!card.hidden) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    document.getElementById('product-form').addEventListener('submit', event => {
+      event.preventDefault(); const form = new FormData(event.currentTarget);
+      products.push({ nome: form.get('nome'), categoria: form.get('categoria'), preco: Number(form.get('preco')), quantidade: Number(form.get('quantidade')), emoji: '📦' });
+      event.currentTarget.reset(); document.getElementById('product-form-card').hidden = true; renderAll();
+    });
+    renderAll();
+  </script>
+</body>
+</html>

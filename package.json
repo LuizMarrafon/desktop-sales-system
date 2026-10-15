@@ -1,0 +1,14 @@
+{
+  "name": "projetovendas",
+  "version": "1.0.0",
+  "description": "Projeto para vendas em comercio",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}

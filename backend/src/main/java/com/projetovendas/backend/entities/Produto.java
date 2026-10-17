@@ -32,6 +32,10 @@ public class Produto {
         this.ativo = ativo;
     }
 
+    public Produto(String nome, String descricao, double preco, int quantidadeEstoque){
+        this(nome, descricao, preco, quantidadeEstoque, true);
+    }
+
     public Produto(Long id, String nome, String descricao, double preco, int quantidadeEstoque, boolean ativo) {
         this.id = id;
         this.nome = nome;

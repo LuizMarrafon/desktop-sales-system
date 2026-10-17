@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rexora — Gestão de Vendas</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div class="brand" aria-label="Rexora">
+        <div class="brand-mark"><span></span><span></span><span></span></div>
+        Rexora
+      </div>
+      <nav class="nav" aria-label="Navegação principal">
+        <a class="nav-link" href="#page-dashboard">Dashboard</a>
+        <a class="nav-link" href="venda.html">Vendas</a>
+        <a class="nav-link" href="produto.html">Produtos</a>
+        <a class="nav-link" href="#page-relatorios">Relatórios</a>
+        <a class="nav-link" href="#page-pedidos">Pedidos</a>
+      </nav>
+      <div class="profile"><div class="avatar">R</div><div><strong>Administrador</strong><small>Meu comércio</small></div></div>
+    </header>
+
+    <section class="welcome">
+      <h1 id="welcome-title">Bem-vindo de volta! 👋</h1>
+      <p id="welcome-subtitle">Acompanhe as vendas, o desempenho dos produtos e o faturamento do seu comércio.</p>
+    </section>
+
+    <section class="section" id="page-dashboard">
+      <div class="stats">
+        <article class="stat"><div class="stat-top"><span>Vendas realizadas</span><span class="stat-icon">↗</span></div><div class="stat-value" id="stat-sales">248</div><div class="stat-foot"><span><span class="positive">▲ 12,8%</span> vs. mês passado</span><span class="details">Neste mês ↗</span></div></article>
+        <article class="stat"><div class="stat-top"><span>Produtos cadastrados</span><span class="stat-icon">▦</span></div><div class="stat-value" id="stat-products">1.284</div><div class="stat-foot"><span><span class="positive">▲ 8,2%</span> no catálogo</span><span class="details">Ver produtos ↗</span></div></article>
+        <article class="stat"><div class="stat-top"><span>Faturamento total</span><span class="stat-icon">＄</span></div><div class="stat-value" id="stat-revenue">R$ 68.837</div><div class="stat-foot"><span><span class="positive">▲ 2,4%</span> vs. mês passado</span><span class="details">Ver detalhes ↗</span></div></article>
+        <article class="stat"><div class="stat-top"><span>Estoque baixo</span><span class="stat-icon">♧</span></div><div class="stat-value" id="stat-low">12</div><div class="stat-foot"><span>Precisam de reposição</span><span class="details">Conferir estoque ↗</span></div></article>
+      </div>
+
+      <div class="content-grid">
+        <article class="card">
+          <div class="card-heading"><h2>Visão geral das vendas</h2><button class="more" aria-label="Mais opções">···</button></div>
+          <div class="profit-line"><div class="profit-value" id="chart-total">R$ 98.643,24</div><span class="pill">+8,4% ↗</span></div>
+          <div class="legend"><span><i class="dot" style="background:#e9edef"></i>Vendas anteriores</span><span><i class="dot" style="background:#ff8b35"></i>Vendas atuais</span></div>
+          <div class="chart">
+            <div class="y-labels"><span>100 mil</span><span>75 mil</span><span>50 mil</span><span>25 mil</span><span>0</span></div>
+            <div class="plot" id="sales-chart" aria-label="Gráfico ilustrativo de vendas por mês">
+              <div class="bar-wrap"><div class="bar" style="height:29%"></div><span class="bar-month">Jan</span></div>
+              <div class="bar-wrap"><div class="bar" style="height:82%"></div><span class="bar-month">Fev</span></div>
+              <div class="bar-wrap"><div class="bar" style="height:61%"></div><span class="bar-month">Mar</span></div>
+              <div class="bar-wrap"><div class="bar" style="height:43%"></div><span class="bar-month">Abr</span></div>
+              <div class="bar-wrap"><div class="bar highlight" style="height:59%"></div><span class="bar-month">Mai</span></div>
+              <div class="bar-wrap"><div class="bar" style="height:96%"></div><span class="bar-month">Jun</span></div>
+              <div class="bar-wrap"><div class="bar" style="height:34%"></div><span class="bar-month">Jul</span></div>
+              <div class="bar-wrap"><div class="bar" style="height:72%"></div><span class="bar-month">Ago</span></div>
+              <div class="bar-wrap"><div class="bar" style="height:45%"></div><span class="bar-month">Set</span></div>
+              <div class="bar-wrap"><div class="bar" style="height:70%"></div><span class="bar-month">Out</span></div>
+              <div class="bar-wrap"><div class="bar" style="height:32%"></div><span class="bar-month">Nov</span></div>
+              <div class="bar-wrap"><div class="bar" style="height:47%"></div><span class="bar-month">Dez</span></div>
+            </div>
+          </div>
+        </article>
+        <aside class="card">
+          <div class="card-heading"><h2>Produtos em destaque</h2><button class="more" aria-label="Mais opções">···</button></div>
+          <div class="product-list" id="top-products">
+            <div class="product"><div class="product-art">👟</div><div class="product-info"><strong>Tênis esportivo</strong><small>Calçados · 86 vendidos</small></div><span class="product-price">R$ 249</span></div>
+            <div class="product"><div class="product-art">⌚</div><div class="product-info"><strong>Relógio digital</strong><small>Acessórios · 64 vendidos</small></div><span class="product-price">R$ 189</span></div>
+            <div class="product"><div class="product-art">🎧</div><div class="product-info"><strong>Fone sem fio</strong><small>Eletrônicos · 52 vendidos</small></div><span class="product-price">R$ 159</span></div>
+            <div class="product"><div class="product-art">🎮</div><div class="product-info"><strong>Controle sem fio</strong><small>Eletrônicos · 38 vendidos</small></div><span class="product-price">R$ 299</span></div>
+          </div>
+        </aside>
+      </div>
+
+      <article class="card table-card">
+        <div class="card-heading"><h2>Vendas recentes</h2><div class="table-tools"><input class="search" placeholder="Busca indisponível" aria-label="Buscar venda" disabled><a class="action action-link" href="venda.html">Ver todas as vendas ↗</a></div></div>
+        <div class="table-wrap"><table><thead><tr><th>Nº da venda</th><th>Cliente</th><th>Data</th><th>Pagamento</th><th>Valor</th><th>Status</th></tr></thead><tbody><tr><td colspan="6" class="empty">Nenhuma venda cadastrada.</td></tr></tbody></table></div>
+      </article>
+    </section>
+
+    <section class="section" id="page-relatorios">
+      <article class="card"><div class="card-heading"><h2>Relatórios</h2></div><p>Veja um resumo dos indicadores demonstrativos do seu comércio.</p><div class="stats" style="margin-top:18px"><div class="stat"><div class="stat-top">Ticket médio</div><div class="stat-value" id="average-ticket">R$ 277,57</div><div class="stat-foot">Valor médio por venda</div></div><div class="stat"><div class="stat-top">Vendas concluídas</div><div class="stat-value" id="completed-count">236</div><div class="stat-foot">Pedidos finalizados</div></div></div><p class="notice">Os números desta primeira versão são fictícios para demonstrar o layout. Relatórios reais serão ligados ao banco de dados numa próxima etapa.</p></article>
+    </section>
+
+    <section class="section" id="page-pedidos">
+      <article class="card"><div class="card-heading"><h2>Pedidos</h2></div><p style="color:var(--muted)">Acompanhe o andamento dos pedidos registrados.</p><div class="table-wrap"><table><thead><tr><th>Pedido</th><th>Cliente</th><th>Data</th><th>Valor</th><th>Status</th></tr></thead><tbody><tr><td colspan="5" class="empty">Nenhum pedido cadastrado.</td></tr></tbody></table></div></article>
+    </section>
+  </main>
+</body>
+</html>

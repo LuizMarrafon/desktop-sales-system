@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rexora — Vendas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/venda.js" defer></script>
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div class="brand" aria-label="Rexora">
+        <div class="brand-mark"><span></span><span></span><span></span></div>
+        Rexora
+      </div>
+      <nav class="nav" aria-label="Navegação principal">
+        <a class="nav-link" href="index.html">Dashboard</a>
+        <a class="nav-link active" href="venda.html" aria-current="page">Vendas</a>
+        <a class="nav-link" href="produto.html">Produtos</a>
+        <a class="nav-link" href="index.html#page-relatorios">Relatórios</a>
+        <a class="nav-link" href="index.html#page-pedidos">Pedidos</a>
+      </nav>
+      <div class="profile"><div class="avatar">R</div><div><strong>Administrador</strong><small>Meu comércio</small></div></div>
+    </header>
+
+    <section class="welcome">
+      <h1>Vendas 🧾</h1>
+      <p>Registre uma venda com um ou mais produtos e consulte as vendas cadastradas.</p>
+    </section>
+
+    <section class="section active" aria-labelledby="sales-title">
+      <article class="card">
+        <div class="card-heading">
+          <h2 id="sales-title">Vendas registradas</h2>
+          <a class="action action-link" href="#sale-form-panel">+ Nova venda</a>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Nº da venda</th><th>Data</th><th>Produtos</th><th>Valor total</th><th>Ações</th></tr></thead>
+            <tbody id="sales-table-body">
+              <tr><td colspan="5" class="empty">Carregando vendas...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+    </section>
+
+    <section class="product-form-panel" id="sale-form-panel" aria-labelledby="sale-form-title">
+      <article class="card">
+        <div class="card-heading">
+          <h2 id="sale-form-title">Registrar venda</h2>
+          <a class="action action-link" href="#sales-title">Fechar formulário</a>
+        </div>
+        <form class="form-grid" id="sale-form">
+          <div class="field full">
+            <span>Produtos da venda</span>
+            <div id="sale-items" class="sale-items">
+              <div class="sale-item">
+                <label class="field" for="sale-product-1">Produto
+                  <select id="sale-product-1" class="sale-product" required>
+                    <option value="">Carregando produtos...</option>
+                  </select>
+                </label>
+                <label class="field" for="sale-quantity-1">Quantidade
+                  <input id="sale-quantity-1" class="sale-quantity" type="number" min="1" step="1" value="1" required>
+                </label>
+                <label class="field" for="sale-price-1">Preço unitário (R$)
+                  <input id="sale-price-1" class="sale-price" type="number" readonly required placeholder="Selecione um produto">
+                </label>
+                <button class="delete-button remove-sale-item" type="button" aria-label="Remover produto da venda" title="Remover produto" hidden><span class="material-symbols-outlined">delete</span></button>
+              </div>
+            </div>
+            <button class="action" id="add-sale-item" type="button">+ Adicionar produto</button>
+          </div>
+          <div class="field full sale-total-line">
+            <strong>Total da venda</strong>
+            <output id="sale-total">R$ 0,00</output>
+          </div>
+          <div class="field full form-actions">
+            <button class="action" id="save-sale-button" type="submit">Salvar venda</button>
+          </div>
+        </form>
+        <p class="notice" id="sale-message" role="status" aria-live="polite">O total é calculado pelos produtos e quantidades informados.</p>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

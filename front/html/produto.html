@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <script src="../js/produto.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rexora — Produtos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body onload="carregarProdutos()">
+  <main class="app">
+    <header class="topbar">
+      <div class="brand" aria-label="Rexora">
+        <div class="brand-mark"><span></span><span></span><span></span></div>
+        Rexora
+      </div>
+      <nav class="nav" aria-label="Navegação principal">
+        <a class="nav-link" href="index.html">Dashboard</a>
+        <a class="nav-link" href="venda.html">Vendas</a>
+        <a class="nav-link active" href="produto.html" aria-current="page">Produtos</a>
+        <a class="nav-link" href="index.html#page-relatorios">Relatórios</a>
+        <a class="nav-link" href="index.html#page-pedidos">Pedidos</a>
+      </nav>
+      <div class="profile"><div class="avatar">R</div><div><strong>Administrador</strong><small>Meu comércio</small></div></div>
+    </header>
+
+    <section class="welcome">
+      <h1>Produtos e estoque 📦</h1>
+      <p>Acompanhe os produtos cadastrados e identifique itens que precisam de reposição.</p>
+    </section>
+<section class="product-form-panel" id="cadastro-produto-form" aria-labelledby="product-form-title">
+      <article class="card">
+        <div class="card-heading">
+          <h2 id="product-form-title">Cadastro de produto</h2>
+          <a class="action action-link" href="#products-title">Fechar formulário</a>
+        </div>
+        <form class="form-grid" id="product-form" onsubmit="cadastroProduto(); return false">
+          <label class="field" for="product-name">Nome do produto
+            <input id="product-name" name="nome" type="text" required minlength="2" maxlength="120" pattern="[A-Za-zÀ-ÿ0-9][A-Za-zÀ-ÿ0-9 .,()'/-]{1,119}" aria-describedby="product-name-error" title="Digite de 2 a 120 caracteres: letras, números, espaços e pontuação comum." placeholder="Ex.: Tênis esportivo">
+          </label>
+          <label class="field" for="product-price">Preço (R$)
+            <input id="product-price" name="preco" type="number" min="0.01" max="999999999.99" step="0.01" required aria-describedby="product-price-error" title="Informe um preço maior que zero, com até duas casas decimais." placeholder="0,00">
+          </label>
+          <label class="field full" for="product-description">Descrição
+            <textarea id="product-description" name="descricao" rows="4" required minlength="3" maxlength="500" aria-describedby="product-description-error" title="A descrição deve ter de 3 a 500 caracteres." placeholder="Descreva o produto"></textarea>
+          </label>
+          <label class="field" for="product-stock">Quantidade em estoque
+            <input id="product-stock" name="quantidadeEstoque" type="number" min="0" max="2147483647" step="1" required aria-describedby="product-stock-error" title="Informe um número inteiro igual ou maior que zero." placeholder="0">
+          </label>
+          <div class="field full form-actions">
+            <button class="action" id="save-product-button" type="submit">Cadastrar produto</button>
+          </div>
+        </form>
+      </article>
+    </section>
+
+
+    <section class="section active" aria-labelledby="products-title">
+      <article class="card">
+        <div class="card-heading">
+          <h2 id="products-title">Produtos</h2>
+          <a class="action action-link" href="#cadastro-produto-form">Cadastrar produto</a>
+        </div>
+        <div class="table-wrap">
+          <table class="table" id="products-table">
+            <thead><tr><th>Nome</th><th>Descrição</th><th>Preço</th><th>Quantidade em estoque</th><th>Situação</th><th>Ações</th></tr></thead>
+            <tbody id="product-table-body">
+              <tr><td colspan="6" class="empty">Nenhum produto cadastrado.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+    </section>
+
+
+  </main>
+</body>
+
+</html>

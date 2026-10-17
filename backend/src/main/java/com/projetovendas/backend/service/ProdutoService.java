@@ -31,4 +31,18 @@ public class ProdutoService {
         }
         return novoProduto;
     }
+
+    public boolean delete(Long id) {
+        if (getId(id) == null)
+            return false;
+        else {
+            produtoRepository.deleteById(id);
+            return true;
+        }
+    }
+
+    public List<Produto> getByKeyWord(String kw){
+        List<Produto> produtoList = produtoRepository.findAllByKeyWord(kw.toUpperCase());
+        return produtoList;
+    }
 }

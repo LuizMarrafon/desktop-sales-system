@@ -6,7 +6,7 @@ function createWindow() {
         height: 1080
     });
 
-    janela.loadFile('front/index.html');
+    janela.loadFile('front/html/index.html');
 }
 
 app.whenReady().then(createWindow);
